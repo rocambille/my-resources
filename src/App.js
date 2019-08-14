@@ -1,10 +1,11 @@
-import React from 'react';
+import React, {useState} from 'react';
 import logo from './logo.svg';
 import './App.css';
 
 import SourceChooser from './components/SourceChooser'
 
 function App() {
+  const [fetchedData, setFetchedData] = useState({items:[]})
   const setSource = (username) => {
     window.localStorage.setItem('source', username)
     fetch(
@@ -12,13 +13,14 @@ function App() {
     ).then(
       response => response.json()
     ).then(
-      data => {
+      data => setFetchedData(
         JSON.parse(
-          atob( // convert from base64
-            data.content
-          )
+          // thx https://stackoverflow.com/questions/30106476/using-javascripts-atob-to-decode-base64-doesnt-properly-decode-utf-8-strings
+          decodeURIComponent(atob(data.content).split('').map(function(c) {
+              return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+          }).join(''))
         )
-      }
+      )
     )
   }
   const initialSource = window.localStorage.getItem('source') || ''
@@ -26,20 +28,9 @@ function App() {
   return (
     <div className="App">
       <SourceChooser initialSource={initialSource} dispatchSource={setSource} />
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <ul>
+        {fetchedData.items.map(item => (<li>{item.title}</li>))}
+      </ul>
     </div>
   );
 }
