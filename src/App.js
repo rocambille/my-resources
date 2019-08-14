@@ -5,10 +5,27 @@ import './App.css';
 import SourceChooser from './components/SourceChooser'
 
 function App() {
-  const setSource = (newSource) => alert(newSource)
+  const setSource = (username) => {
+    window.localStorage.setItem('source', username)
+    fetch(
+      `https://api.github.com/repos/${username}/my-resources/contents/db.json`
+    ).then(
+      response => response.json()
+    ).then(
+      data => {
+        JSON.parse(
+          atob( // convert from base64
+            data.content
+          )
+        )
+      }
+    )
+  }
+  const initialSource = window.localStorage.getItem('source') || ''
+  setSource(initialSource)
   return (
     <div className="App">
-      <SourceChooser initialSource='' dispatchSource={setSource} />
+      <SourceChooser initialSource={initialSource} dispatchSource={setSource} />
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
