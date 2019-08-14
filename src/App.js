@@ -2,9 +2,12 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 
+import SourceChooser from './components/SourceChooser'
+
 function App() {
   return (
     <div className="App">
+      <SourceChooser />
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
