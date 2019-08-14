@@ -17,8 +17,18 @@ const SourceChooser = () => {
         {
           id => (
             <div>
-              <label htmlFor={id} style={inlineStyle}>Type a GitHub username:</label>
-              <input id={id} style={stretchInsetStyle} type="text" placeholder="jdoe" value={source} onChange={(event) => setSource(event.target.value)} />
+              <label
+                htmlFor={id}
+                style={inlineStyle}
+                >Type a GitHub username:</label>
+              <input
+                id={id}
+                onChange={(event) => setSource(event.target.value)}
+                placeholder="jdoe"
+                style={stretchInsetStyle}
+                type="text"
+                value={source}
+                />
             </div>
           )
         }
