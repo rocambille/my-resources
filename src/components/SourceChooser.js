@@ -8,9 +8,8 @@ const stretchInsetStyle = {
   padding: `.5rem .25rem`
 }
 
-const SourceChooser = () => {
-  const [source, setSource] = useState("")
-
+const SourceChooser = ({initialSource, dispatchSource}) => {
+  const [source, setSource] = useState(initialSource)
   return (
     <form>
       <UID>
@@ -23,7 +22,10 @@ const SourceChooser = () => {
                 >Type a GitHub username:</label>
               <input
                 id={id}
-                onChange={(event) => setSource(event.target.value)}
+                onChange={(event) => {
+                  dispatchSource(event.target.value)
+                  return setSource(event.target.value)}
+                }
                 placeholder="jdoe"
                 style={stretchInsetStyle}
                 type="text"

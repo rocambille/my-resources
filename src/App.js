@@ -5,9 +5,10 @@ import './App.css';
 import SourceChooser from './components/SourceChooser'
 
 function App() {
+  const setSource = (newSource) => alert(newSource)
   return (
     <div className="App">
-      <SourceChooser />
+      <SourceChooser initialSource='' dispatchSource={setSource} />
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
