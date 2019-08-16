@@ -4,8 +4,8 @@ const DataConsumer = ({data}) => (
 	<ul>
     {
 			data.items.map(
-				item => (
-					<li>{item.title}</li>
+				(item, i) => (
+					<li key={i}>{item.title}</li>
 				)
 			)
 		}
