@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useReducer} from 'react'
 import {UID} from 'react-uid'
 
 const inlineStyle = {
@@ -11,6 +11,10 @@ const stretchInsetStyle = {
 const DataProvider = ({setData}) => {
 
   const fetchUsername = (username) => {
+    if (!username || username.length === 0) {
+      return
+    }
+
     fetch(
       `https://api.github.com/repos/${username}/my-resources/contents/db.json`
     ).then(
@@ -38,7 +42,23 @@ const DataProvider = ({setData}) => {
   const lastFetchedUsername = window.localStorage.getItem('lastFetchedUsername') || ''
   fetchUsername(lastFetchedUsername)
 
-  const [username, setUsername] = useState(lastFetchedUsername)
+  const reducer = (state, action) => {
+    window.clearTimeout(state.timeoutId)
+
+    return {
+      value: action.value,
+      timeoutId: window.setTimeout(
+        () => fetchUsername(action.value), 2000
+      )
+    }
+  }
+
+  const [username, setUsername] = useReducer(
+    reducer, {
+      value: lastFetchedUsername,
+      timeoutId: 0
+    }
+  )
 
   return (
     <form>
@@ -52,14 +72,11 @@ const DataProvider = ({setData}) => {
                 >Type a GitHub username:</label>
               <input
                 id={id}
-                onChange={(event) => {
-                  fetchUsername(event.target.value)
-                  return setUsername(event.target.value)}
-                }
+                onChange={event => setUsername({value: event.target.value})}
                 placeholder="jdoe"
                 style={stretchInsetStyle}
                 type="text"
-                value={username}
+                value={username.value}
                 />
             </div>
           )
