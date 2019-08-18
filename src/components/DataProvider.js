@@ -61,28 +61,26 @@ const DataProvider = ({setData}) => {
   )
 
   return (
-    <form>
-      <UID>
-        {
-          id => (
-            <div>
-              <label
-                htmlFor={id}
-                style={inlineStyle}
-                >Type a GitHub username:</label>
-              <input
-                id={id}
-                onChange={event => setUsername({value: event.target.value})}
-                placeholder="jdoe"
-                style={stretchInsetStyle}
-                type="text"
-                value={username.value}
-                />
-            </div>
-          )
-        }
-      </UID>
-    </form>
+    <UID>
+      {
+        id => (
+          <form>
+            <label
+              htmlFor={id}
+              style={inlineStyle}
+              >Type a GitHub username:</label>
+            <input
+              id={id}
+              onChange={event => setUsername({value: event.target.value})}
+              placeholder="jdoe"
+              style={stretchInsetStyle}
+              type="text"
+              value={username.value}
+              />
+          </form>
+        )
+      }
+    </UID>
   )
 }
 
