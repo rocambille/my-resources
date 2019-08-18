@@ -1,12 +1,7 @@
 import React, {useReducer} from 'react'
 import {UID} from 'react-uid'
 
-const inlineStyle = {
-  marginRight: `.5rem`
-}
-const stretchInsetStyle = {
-  padding: `.5rem .25rem`
-}
+import '../styles/space.css'
 
 const DataProvider = ({setData}) => {
 
@@ -64,16 +59,19 @@ const DataProvider = ({setData}) => {
     <UID>
       {
         id => (
-          <form>
+          <form
+            className="_space-size_s"
+            style={{textAlign: `center`}}
+            >
             <label
               htmlFor={id}
-              style={inlineStyle}
+              className="_space_inline"
               >Type a GitHub username:</label>
             <input
               id={id}
               onChange={event => setUsername({value: event.target.value})}
               placeholder="jdoe"
-              style={stretchInsetStyle}
+              className="_space-size_xs _space_inset-stretch"
               type="text"
               value={username.value}
               />

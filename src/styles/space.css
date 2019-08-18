@@ -1,0 +1,54 @@
+
+:root {
+  --space-size--xs: calc(var(--space-size--m) / 4);
+  --space-size--s: calc(var(--space-size--m) / 2);
+  --space-size--m: 16px;
+  --space-size--l: calc(2 * var(--space-size--m));
+  --space-size--xl: calc(4 * var(--space-size--m));
+  --space-size: var(--space-size--m);
+}
+
+._space-size_xs {
+  --space-size: var(--space-size--xs);
+}
+
+._space-size_s {
+  --space-size: var(--space-size--s);
+}
+
+._space-size_m {
+  --space-size: var(--space-size--m);
+}
+
+._space-size_l {
+  --space-size: var(--space-size--l);
+}
+
+._space-size_xl {
+  --space-size: var(--space-size--xl);
+}
+
+._space_reset, ._space_stack, ._space_inset-stretch, ._space_inset-squish, ._space_inset, ._space_inline {
+  margin: 0;
+  padding: 0;
+}
+
+._space_inline {
+  margin-right: var(--space-size);
+}
+
+._space_inset {
+  padding: var(--space-size);
+}
+
+._space_inset-squish {
+  padding: calc(var(--space-size) / 2) var(--space-size);
+}
+
+._space_inset-stretch {
+  padding: calc(1.5 * var(--space-size)) var(--space-size);
+}
+
+._space_stack {
+  margin-bottom: var(--space-size);
+}

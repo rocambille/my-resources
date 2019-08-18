@@ -1,5 +1,4 @@
 import React, {useState} from 'react';
-import './App.css';
 
 import DataProvider from './components/DataProvider'
 import DataConsumer from './components/DataConsumer'
