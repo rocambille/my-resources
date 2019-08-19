@@ -6,10 +6,10 @@ import DataConsumer from './components/DataConsumer'
 function App() {
   const [data, setData] = useState({items: []})
   return (
-    <div className="App">
+    <>
       <DataProvider setData={setData} />
       <DataConsumer data={data} />
-    </div>
+    </>
   );
 }
 
