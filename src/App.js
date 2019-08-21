@@ -6,43 +6,15 @@ import {
   Add as ResourcesAdd
 } from './routes/resources'
 
-import DataProvider from './components/DataProvider'
-
 const App = () => {
   const [data, setData] = useState({items: []})
-
-  const routes = (
-    <>
-      <Route
-        exact path={
-          [
-            "/",
-            "/resources"
-          ]
-        }
-        render={
-          (props) => (
-            <ResourcesBrowse {...props} data={data} />
-          )
-        }
-        />
-      <Route
-        path="/resources/add"
-        render={
-          (props) => (
-            <ResourcesAdd {...props} data={data} />
-          )
-        }
-        />
-    </>
-  )
 
   return (
     <Router>
       <ul>
         <li>
           <NavLink
-            to="/"
+            to="/resources"
             activeClassName="nav__link_active"
             >
             Home
@@ -57,8 +29,34 @@ const App = () => {
           </NavLink>
         </li>
       </ul>
-      <DataProvider setData={setData} />
-      {routes}
+
+      <Route
+        exact path={
+          [
+            "/",
+            "/resources"
+          ]
+        }
+        render={
+          (props) => (
+            <ResourcesBrowse {...props}
+              data={data}
+              setData={setData}
+              />
+          )
+        }
+        />
+      <Route
+        path="/resources/add"
+        render={
+          (props) => (
+            <ResourcesAdd {...props}
+              data={data}
+              setData={setData}
+              />
+          )
+        }
+        />
     </Router>
   )
 }
