@@ -1,21 +1,4 @@
-import React from 'react'
-
-import DataAdder from 'components/DataAdder'
-import DataConsumer from 'components/DataConsumer'
-import DataProvider from 'components/DataProvider'
-
-const Browse = ({data, setData}) => (
-  <>
-    <DataProvider setData={setData} />
-    <DataConsumer data={data} />
-  </>
-)
-
-const Add = ({data, setData}) => (
-  <>
-    <DataProvider setData={setData} />
-    <DataAdder data={data} />
-  </>
-)
+import Browse from './resources/Browse'
+import Add from './resources/Add'
 
 export {Browse, Add}
