@@ -3,7 +3,7 @@ import {UID} from 'react-uid'
 
 import 'styles/space.css'
 
-const DataProvider = ({setData}) => {
+const DataProvider = ({dataState}) => {
 
   const fetchUsername = (username) => {
     if (!username || username.length === 0) {
@@ -27,7 +27,7 @@ const DataProvider = ({setData}) => {
           ).join('')
         )
 
-        setData(JSON.parse(fileContent))
+        dataState.set(JSON.parse(fileContent))
 
         window.localStorage.setItem('lastFetchedUsername', username)
       }
@@ -59,7 +59,7 @@ const DataProvider = ({setData}) => {
     <UID>
       {
         id => (
-          <form
+          <div
             className="_space-size_s"
             style={{textAlign: `center`}}
             >
@@ -75,7 +75,7 @@ const DataProvider = ({setData}) => {
               type="text"
               value={username.value}
               />
-          </form>
+          </div>
         )
       }
     </UID>

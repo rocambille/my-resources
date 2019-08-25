@@ -1,14 +1,14 @@
 import React from 'react'
 
-const DataConsumer = ({data}) => (
-	<ul>
+const DataConsumer = ({dataState}) => (
+  <ul>
     {
-			data.items.map(
-				(item, i) => (
-					<li key={i}>{item.title}</li>
-				)
-			)
-		}
+      dataState.get.items.map(
+        (item, i) => (
+          <li key={i}>{item.title}</li>
+        )
+      )
+    }
   </ul>
 )
 

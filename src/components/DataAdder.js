@@ -1,11 +1,11 @@
 import React from 'react'
 
-const DataAdder = ({data}) => (
+const DataAdder = ({dataState}) => (
   <>
     <p>add data to:</p>
     <ul>
       {
-        data.items.map(
+        dataState.get.items.map(
           (item, i) => (
             <li key={i}>{item.title}</li>
           )
