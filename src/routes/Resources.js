@@ -1,5 +1,7 @@
-import React, {useState} from 'react'
+import React from 'react'
 import {Route} from 'react-router-dom'
+
+import {useGitHub} from 'hooks/useGitHub'
 
 import DataProvider from 'components/DataProvider'
 
@@ -7,13 +9,13 @@ import Browse from './resources/Browse'
 import Add from './resources/Add'
 
 const Resources = () => {
-  const [data, setData] = useState({items: []})
-  const dataState = {get: data, set: setData}
+  const [data, setFetchUrl, isFetching] = useGitHub()
 
   return (
     <>
       <DataProvider
-        dataState={dataState}
+        setFetchUrl={setFetchUrl}
+        isFetching={isFetching}
         />
       <Route
         path="/resources"
@@ -22,11 +24,10 @@ const Resources = () => {
             <>
               <Browse
                 {...props}
-                dataState={dataState}
+                data={data}
                 />
               <Add
                 {...props}
-                dataState={dataState}
                 />
             </>
           )

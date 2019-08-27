@@ -3,7 +3,7 @@ import {Route} from 'react-router-dom'
 
 import DataConsumer from 'components/DataConsumer'
 
-const Browse = ({match, dataState}) => (
+const Browse = ({match, data}) => (
   <Route
     exact path={match.url}
     render={
@@ -11,7 +11,7 @@ const Browse = ({match, dataState}) => (
         <>
           <DataConsumer
             {...props}
-            dataState={dataState}
+            data={data}
             />
         </>
       )

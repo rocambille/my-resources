@@ -3,39 +3,18 @@ import {UID} from 'react-uid'
 
 import 'styles/space.css'
 
-const DataProvider = ({dataState}) => {
+const DataProvider = ({setFetchUrl, isFetching}) => {
 
-  const fetchUsername = async (username) => {
+  const fetchUsername = (username) => {
     if (!username || username.length === 0) {
       return
     }
 
-    const response = await fetch(
+    setFetchUrl(
       `https://api.github.com/repos/${username}/my-resources/contents/db.json`
     )
 
-    if (response.status !== 200) {
-      return
-    }
-
     window.localStorage.setItem('lastFetchedUsername', username)
-
-    const json = await response.json()
-
-    // thx https://stackoverflow.com/questions/30106476/using-javascripts-atob-to-decode-base64-doesnt-properly-decode-utf-8-strings
-    const data = JSON.parse(
-      decodeURIComponent(
-        atob(
-          json.content
-        ).split('').map(
-          function(c) {
-            return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
-          }
-        ).join('')
-      )
-    )
-
-    dataState.set(data)
   }
 
   const lastFetchedUsername = window.localStorage.getItem('lastFetchedUsername') || ''
@@ -70,7 +49,15 @@ const DataProvider = ({dataState}) => {
             <label
               htmlFor={id}
               className="_space_inline"
-              >Type a GitHub username:</label>
+              >
+                {
+                  isFetching ? (
+                    "fetching"
+                  ) : (
+                    "fetched"
+                  )
+                }
+              </label>
             <input
               id={id}
               onChange={event => setUsername({value: event.target.value})}

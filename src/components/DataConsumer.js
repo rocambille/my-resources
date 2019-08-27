@@ -1,9 +1,9 @@
 import React from 'react'
 
-const DataConsumer = ({dataState}) => (
+const DataConsumer = ({data}) => (
   <ul>
     {
-      dataState.get.items.map(
+      data.items && data.items.map(
         (item, i) => (
           <li key={i}>{item.title}</li>
         )
