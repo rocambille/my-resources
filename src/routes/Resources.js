@@ -3,7 +3,7 @@ import {Route} from 'react-router-dom'
 
 import {useGitHub} from 'hooks/useGitHub'
 
-import DataProvider from 'components/DataProvider'
+import RepositoryForm from 'components/RepositoryForm'
 
 import Browse from './resources/Browse'
 import Add from './resources/Add'
@@ -13,7 +13,7 @@ const Resources = () => {
 
   return (
     <>
-      <DataProvider
+      <RepositoryForm
         setFetchUrl={setFetchUrl}
         isFetching={isFetching}
         />

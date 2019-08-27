@@ -1,7 +1,7 @@
 import React from 'react'
 import {Route} from 'react-router-dom'
 
-import DataConsumer from 'components/DataConsumer'
+import DataBrowser from 'components/DataBrowser'
 
 const Browse = ({match, data}) => (
   <Route
@@ -9,7 +9,7 @@ const Browse = ({match, data}) => (
     render={
       (props) => (
         <>
-          <DataConsumer
+          <DataBrowser
             {...props}
             data={data}
             />
