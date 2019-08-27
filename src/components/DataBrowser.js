@@ -1,6 +1,6 @@
 import React from 'react'
 
-const DataConsumer = ({data}) => (
+const DataBrowser = ({data}) => (
   <ul>
     {
       data.items && data.items.map(
@@ -12,4 +12,4 @@ const DataConsumer = ({data}) => (
   </ul>
 )
 
-export default DataConsumer
+export default DataBrowser

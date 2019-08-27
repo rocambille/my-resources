@@ -3,7 +3,7 @@ import {UID} from 'react-uid'
 
 import 'styles/space.css'
 
-const DataProvider = ({setFetchUrl, isFetching}) => {
+const RepositoryForm = ({setFetchUrl, isFetching}) => {
 
   const fetchUsername = (username) => {
     if (!username || username.length === 0) {
@@ -73,4 +73,4 @@ const DataProvider = ({setFetchUrl, isFetching}) => {
   )
 }
 
-export default DataProvider
+export default RepositoryForm

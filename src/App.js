@@ -6,14 +6,12 @@ import Navbar from './components/Navbar'
 import Index from './routes/Index'
 import Resources from './routes/Resources'
 
-const App = () => {
-  return(
-    <BrowserRouter>
-      <Navbar />
-      <Index />
-      <Resources />
-    </BrowserRouter>
-  )
-}
+const App = () => (
+  <BrowserRouter>
+    <Navbar />
+    <Index />
+    <Resources />
+  </BrowserRouter>
+)
 
 export default App
