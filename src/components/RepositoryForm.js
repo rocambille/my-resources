@@ -50,14 +50,14 @@ const RepositoryForm = ({setFetchUrl, isFetching}) => {
               htmlFor={id}
               className="_space_inline"
               >
-                {
-                  isFetching ? (
-                    "fetching"
-                  ) : (
-                    "fetched"
-                  )
-                }
-              </label>
+              {
+                isFetching ? (
+                  "fetching"
+                ) : (
+                  "fetched"
+                )
+              }
+            </label>
             <input
               id={id}
               onChange={event => setUsername({value: event.target.value})}

@@ -12,8 +12,11 @@ const useGitHub = () => {
         setData({})
 
         const response = await fetch(fetchUrl)
-    
+
         if (response.status !== 200) {
+          return
+        }
+        if (response.type === 'basic') {
           return
         }
 
