@@ -21,9 +21,13 @@ const Resources = () => {
   return (
     <>
       <RepositoryForm
-        setOwner={setOwner}
-        setRepository={setRepository}
-        isFetching={isFetching}
+        {
+          ...{
+            setOwner,
+            setRepository,
+            isFetching,
+          }
+        }
         />
       <Route
         path="/resources"
@@ -31,8 +35,12 @@ const Resources = () => {
           (props) => (
             <>
               <Browse
-                {...props}
-                contents={contents}
+                {
+                  ...{
+                    ...props,
+                    contents,
+                  }
+                }
                 />
               <Add
                 {...props}

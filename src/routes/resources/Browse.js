@@ -15,8 +15,12 @@ const Browse = (
       (props) => (
         <>
           <DataBrowser
-            {...props}
-            contents={contents}
+            {
+              ...{
+                ...props,
+                contents,
+              }
+            }
             />
         </>
       )
