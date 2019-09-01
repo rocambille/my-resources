@@ -1,7 +1,7 @@
 import React from 'react'
 import {Route} from 'react-router-dom'
 
-import {useGitHub} from 'hooks/useGitHub'
+import {useGitHubContents} from 'hooks/useGitHubContents'
 
 import RepositoryForm from 'components/RepositoryForm'
 
@@ -9,12 +9,20 @@ import Browse from './resources/Browse'
 import Add from './resources/Add'
 
 const Resources = () => {
-  const [data, setFetchUrl, isFetching] = useGitHub()
+  const [
+    contents,
+    setOwner,
+    setRepository,
+    isFetching,
+  ] = useGitHubContents(
+    'db.json'
+  )
 
   return (
     <>
       <RepositoryForm
-        setFetchUrl={setFetchUrl}
+        setOwner={setOwner}
+        setRepository={setRepository}
         isFetching={isFetching}
         />
       <Route
@@ -24,7 +32,7 @@ const Resources = () => {
             <>
               <Browse
                 {...props}
-                data={data}
+                contents={contents}
                 />
               <Add
                 {...props}

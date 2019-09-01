@@ -3,16 +3,22 @@ import {UID} from 'react-uid'
 
 import 'styles/space.css'
 
-const RepositoryForm = ({setFetchUrl, isFetching}) => {
+const RepositoryForm = (
+  {
+    setOwner,
+    setRepository,
+    isFetching,
+  }
+) => {
+
+  setRepository('my-resources')
 
   const fetchUsername = (username) => {
     if (!username || username.length === 0) {
       return
     }
 
-    setFetchUrl(
-      `https://api.github.com/repos/${username}/my-resources/contents/db.json`
-    )
+    setOwner(username)
 
     window.localStorage.setItem('lastFetchedUsername', username)
   }

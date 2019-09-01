@@ -3,7 +3,12 @@ import {Route} from 'react-router-dom'
 
 import DataBrowser from 'components/DataBrowser'
 
-const Browse = ({match, data}) => (
+const Browse = (
+  {
+    match,
+    contents,
+  }
+) => (
   <Route
     exact path={match.url}
     render={
@@ -11,7 +16,7 @@ const Browse = ({match, data}) => (
         <>
           <DataBrowser
             {...props}
-            data={data}
+            contents={contents}
             />
         </>
       )

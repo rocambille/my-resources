@@ -1,9 +1,13 @@
 import React from 'react'
 
-const DataBrowser = ({data}) => (
+const DataBrowser = (
+  {
+    contents,
+  }
+) => (
   <ul>
     {
-      data.items && data.items.map(
+      contents.items && contents.items.map(
         (item, i) => (
           <li key={i}>{item.title}</li>
         )
