@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import {Route} from 'react-router-dom'
 
 import {useGitHubContents} from 'hooks/useGitHubContents'
@@ -10,12 +10,43 @@ import Add from './resources/Add'
 
 const Resources = () => {
   const [
+    initialOwner,
+    initialRepository,
+    initialPath,
+  ] = [
+    window.localStorage.getItem(
+      'lastFetchedOwner'
+    ) || '',
+    window.localStorage.getItem(
+      'lastFetchedRepository'
+    ) || 'my-resources',
+    window.localStorage.getItem(
+      'lastFetchedPath'
+    ) || 'db.json',
+  ]
+
+  const [
     contents,
+    owner,
     setOwner,
-    setRepository,
+    /*repository*/,
+    /*setRepository*/,
+    /*path*/,
+    /*setPath*/,
     isFetching,
   ] = useGitHubContents(
-    'db.json'
+    initialOwner,
+    initialRepository,
+    initialPath,
+  )
+
+  useEffect(
+    () => (
+      window.localStorage.setItem(
+        'lastFetchedOwner',
+        owner
+      )
+    )
   )
 
   return (
@@ -23,8 +54,8 @@ const Resources = () => {
       <RepositoryForm
         {
           ...{
+            owner,
             setOwner,
-            setRepository,
             isFetching,
           }
         }

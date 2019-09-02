@@ -5,41 +5,29 @@ import 'styles/space.css'
 
 const RepositoryForm = (
   {
+    owner,
     setOwner,
-    setRepository,
     isFetching,
   }
 ) => {
 
-  setRepository('my-resources')
-
-  const fetchUsername = (username) => {
-    if (!username || username.length === 0) {
-      return
-    }
-
-    setOwner(username)
-
-    window.localStorage.setItem('lastFetchedUsername', username)
-  }
-
-  const lastFetchedUsername = window.localStorage.getItem('lastFetchedUsername') || ''
-  fetchUsername(lastFetchedUsername)
-
   const reducer = (state, action) => {
     window.clearTimeout(state.timeoutId)
 
+    const newOwner = action.value
+
     return {
-      value: action.value,
+      value: newOwner,
       timeoutId: window.setTimeout(
-        () => fetchUsername(action.value), 2000
+        () => setOwner(newOwner),
+        2000
       )
     }
   }
 
   const [username, setUsername] = useReducer(
     reducer, {
-      value: lastFetchedUsername,
+      value: owner,
       timeoutId: 0
     }
   )

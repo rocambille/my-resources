@@ -1,11 +1,14 @@
 import {useState, useEffect} from 'react'
 
 const useGitHubContents = (
-  path
+  initialOwner,
+  initialRepository,
+  initialPath,
 ) => {
   const [contents, setContents] = useState({})
-  const [owner, setOwner] = useState('')
-  const [repository, setRepository] = useState('')
+  const [owner, setOwner] = useState(initialOwner)
+  const [repository, setRepository] = useState(initialRepository)
+  const [path, setPath] = useState(initialPath)
   const [isFetching, setFetching] = useState(false)
 
   useEffect(
@@ -62,8 +65,12 @@ const useGitHubContents = (
 
   return [
     contents,
+    owner,
     setOwner,
+    repository,
     setRepository,
+    path,
+    setPath,
     isFetching,
   ]
 }
