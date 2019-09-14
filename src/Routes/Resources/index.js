@@ -3,7 +3,7 @@ import {Route} from 'react-router-dom'
 
 import {useGitHubContents} from 'Hooks/useGitHubContents'
 
-import RepositoryForm from 'Components/RepositoryForm'
+import DataSourceForm from 'Components/DataSourceForm'
 
 import Browse from './Browse'
 import Add from './Add'
@@ -51,7 +51,7 @@ const Resources = () => {
 
   return (
     <>
-      <RepositoryForm
+      <DataSourceForm
         {...{
           owner,
           setOwner,

@@ -3,7 +3,7 @@ import {UID} from 'react-uid'
 
 import 'Styles/space.css'
 
-const RepositoryForm = (
+const DataSourceForm = (
   {
     owner,
     setOwner,
@@ -67,4 +67,4 @@ const RepositoryForm = (
   )
 }
 
-export default RepositoryForm
+export default DataSourceForm
