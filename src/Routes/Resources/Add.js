@@ -1,7 +1,7 @@
 import React from 'react'
 import {Route} from 'react-router-dom'
 
-import DataAdder from 'components/DataAdder'
+import DataAdder from 'Components/DataAdder'
 
 const Add = (
   {

@@ -1,7 +1,7 @@
 import React from 'react'
 import {Route} from 'react-router-dom'
 
-import DataBrowser from 'components/DataBrowser'
+import DataBrowser from 'Components/DataBrowser'
 
 const Browse = (
   {

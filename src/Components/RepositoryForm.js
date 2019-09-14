@@ -1,7 +1,7 @@
 import React, {useReducer} from 'react'
 import {UID} from 'react-uid'
 
-import 'styles/space.css'
+import 'Styles/space.css'
 
 const RepositoryForm = (
   {

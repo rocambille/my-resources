@@ -1,12 +1,12 @@
 import React, {useEffect} from 'react'
 import {Route} from 'react-router-dom'
 
-import {useGitHubContents} from 'hooks/useGitHubContents'
+import {useGitHubContents} from 'Hooks/useGitHubContents'
 
-import RepositoryForm from 'components/RepositoryForm'
+import RepositoryForm from 'Components/RepositoryForm'
 
-import Browse from './resources/Browse'
-import Add from './resources/Add'
+import Browse from './Browse'
+import Add from './Add'
 
 const Resources = () => {
   const [
