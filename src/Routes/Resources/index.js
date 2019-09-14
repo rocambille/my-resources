@@ -9,21 +9,16 @@ import Browse from './Browse'
 import Add from './Add'
 
 const Resources = () => {
-  const [
-    initialOwner,
-    initialRepository,
-    initialPath,
-  ] = [
-    window.localStorage.getItem(
-      'lastFetchedOwner'
-    ) || '',
-    window.localStorage.getItem(
-      'lastFetchedRepository'
-    ) || 'my-resources',
-    window.localStorage.getItem(
-      'lastFetchedPath'
-    ) || 'db.json',
-  ]
+  const either = key => defaultValue => (
+    window.localStorage.getItem(key) || defaultValue
+  )
+
+  const initialOwner =
+    either('lastFetchedOwner')('')
+  const initialRepository =
+    either('lastFetchedRepository')('my-resources')
+  const initialPath =
+    either('lastFetchedPath')('db.json')
 
   const [
     contents,
