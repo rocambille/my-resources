@@ -7,9 +7,9 @@ const DataBrowser = (
 ) => (
   <ul>
     {
-      contents.items && contents.items.map(
-        (item, i) => (
-          <li key={i}>{item.title}</li>
+      contents.resources && contents.resources.map(
+        (resource, i) => (
+          <li key={i}>{resource.uri}</li>
         )
       )
     }

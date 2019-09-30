@@ -1,0 +1,16 @@
+{
+  "resources": [
+    {
+      "uri": "https://en.wikipedia.org/wiki/World_Wide_Web"
+    },
+    {
+      "uri": "https://medium.com/@cscalfani/so-you-want-to-be-a-functional-programmer-part-1-1f15e387e536"
+    },
+    {
+      "uri": "urn:isbn:978-0-321-75104-1"
+    },
+    {
+      "uri": "data:text/plain;base64,SSBoYXZlIGEgY3VlIGxpZ2h0IEkgY2FuIHVzZSB0byBzaG93IHlvdSB3aGVuIEknbSBqb2tpbmcsIGlmIHlvdSBsaWtl"
+    }
+  ]
+}
