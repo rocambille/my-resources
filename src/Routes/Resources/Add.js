@@ -6,6 +6,8 @@ import DataAdder from 'Components/DataAdder'
 const Add = (
   {
     match,
+    contents,
+    setContents,
   }
 ) => (
   <Route
@@ -14,7 +16,11 @@ const Add = (
       (props) => (
         <>
           <DataAdder
-            {...props}
+            {...{
+              ...props,
+              contents,
+              setContents,
+            }}
             />
         </>
       )

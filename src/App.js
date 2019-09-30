@@ -5,6 +5,8 @@ import Navbar from './Components/Navbar'
 
 import Routes from './Routes'
 
+import 'Styles/space.css'
+
 const App = () => (
   <BrowserRouter>
     <Navbar />

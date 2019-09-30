@@ -22,6 +22,7 @@ const Resources = () => {
 
   const [
     contents,
+    setContents,
     owner,
     setOwner,
     /*repository*/,
@@ -65,7 +66,11 @@ const Resources = () => {
                 }}
                 />
               <Add
-                {...props}
+                {...{
+                  ...props,
+                  contents,
+                  setContents,
+                }}
                 />
             </>
           )

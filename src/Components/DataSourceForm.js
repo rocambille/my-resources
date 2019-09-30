@@ -1,8 +1,6 @@
 import React, {useReducer} from 'react'
 import {UID} from 'react-uid'
 
-import 'Styles/space.css'
-
 const DataSourceForm = (
   {
     owner,

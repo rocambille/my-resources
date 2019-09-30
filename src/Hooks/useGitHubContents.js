@@ -65,6 +65,7 @@ const useGitHubContents = (
 
   return [
     contents,
+    setContents,
     owner,
     setOwner,
     repository,
