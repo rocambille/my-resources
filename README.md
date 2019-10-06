@@ -17,6 +17,11 @@ cd my-resources
 
 In the project directory, you can run:
 
+### `npm install`
+
+Installs the projects dependencies in order to run the following
+scripts
+
 ### `npm start`
 
 Runs the app in the development mode.<br>
