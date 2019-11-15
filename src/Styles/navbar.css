@@ -1,0 +1,22 @@
+.nav__list {
+  display: flex;
+  justify-content: center;
+  background: #672f2f;
+  text-align: center;
+}
+
+.nav__link {
+  border: none;
+  color: #faf5ef;
+  font-size: 18px;
+  border-radius: 5px;
+  position: relative;
+  box-sizing: border-box;
+  text-decoration: none;
+}
+
+.nav__link:hover,
+.nav__link_active {
+  background: #d7d1c9;
+  color: #672f2f;
+}
