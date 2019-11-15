@@ -1,14 +1,11 @@
-import React, {useReducer} from 'react'
-import {UID} from 'react-uid'
+import React, { useReducer } from 'react'
+import { UID } from 'react-uid'
 
-const DataSourceForm = (
-  {
-    owner,
-    setOwner,
-    isFetching,
-  }
-) => {
-
+const DataSourceForm = ({
+  owner,
+  setOwner,
+  isFetching,
+}) => {
   const reducer = (state, action) => {
     window.clearTimeout(state.timeoutId)
 
@@ -18,46 +15,40 @@ const DataSourceForm = (
       value: newOwner,
       timeoutId: window.setTimeout(
         () => setOwner(newOwner),
-        2000
-      )
+        2000,
+      ),
     }
   }
 
   const [username, setUsername] = useReducer(
     reducer, {
       value: owner,
-      timeoutId: 0
-    }
+      timeoutId: 0,
+    },
   )
 
   return (
     <UID>
       {
-        id => (
+        (id) => (
           <div
             className="_space-size_s"
-            style={{textAlign: `center`}}
-            >
+            style={{ textAlign: 'center' }}
+          >
             <label
               htmlFor={id}
               className="_space_inline"
-              >
-              {
-                isFetching ? (
-                  "fetching"
-                ) : (
-                  "fetched"
-                )
-              }
+            >
+              {isFetching ? 'fetching' : 'fetched'}
             </label>
             <input
               id={id}
-              onChange={event => setUsername({value: event.target.value})}
+              onChange={(event) => setUsername({ value: event.target.value })}
               placeholder="jdoe"
               className="_space-size_xs _space_inset-stretch"
               type="text"
               value={username.value}
-              />
+            />
           </div>
         )
       }

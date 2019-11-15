@@ -1,4 +1,4 @@
-import {useState, useEffect} from 'react'
+import { useState, useEffect } from 'react'
 
 const useGitHubContents = (
   initialOwner,
@@ -17,9 +17,9 @@ const useGitHubContents = (
         setFetching(true)
         setContents({})
 
-        const response = await fetch(
-          `https://api.github.com/repos/${owner}/${repository}/contents/${path}`
-        )
+        const target = `https://api.github.com/repos/${owner}/${repository}/contents/${path}`
+
+        const response = await fetch(target)
 
         if (response.status !== 200) {
           return
@@ -33,23 +33,17 @@ const useGitHubContents = (
         // thx https://stackoverflow.com/questions/30106476/using-javascripts-atob-to-decode-base64-doesnt-properly-decode-utf-8-strings
         const newContents = JSON.parse(
           decodeURIComponent(
-            atob(
-              json.content
-            ).split('').map(
-              function(c) {
-                return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
-              }
-            ).join('')
-          )
+            atob(json.content).split('').map(
+              (c) => `%${(`00${c.charCodeAt(0).toString(16)}`).slice(-2)}`,
+            ).join(''),
+          ),
         )
 
-        setContents(
-          {
-            ...newContents,
-            sha: json.sha,
-            url: json.url,
-          }
-        )
+        setContents({
+          ...newContents,
+          sha: json.sha,
+          url: json.url,
+        })
 
         setFetching(false)
       }
@@ -60,7 +54,7 @@ const useGitHubContents = (
       owner,
       repository,
       path,
-    ]
+    ],
   )
 
   return [
@@ -76,4 +70,4 @@ const useGitHubContents = (
   ]
 }
 
-export {useGitHubContents}
+export default useGitHubContents

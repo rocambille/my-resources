@@ -1,5 +1,5 @@
 import React from 'react'
-import {NavLink} from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 
 const Navbar = () => (
   <nav>
@@ -8,7 +8,7 @@ const Navbar = () => (
         <NavLink
           to="/resources"
           activeClassName="nav__link_active"
-          >
+        >
           Home
         </NavLink>
       </li>
@@ -16,7 +16,7 @@ const Navbar = () => (
         <NavLink
           to="/resources/add"
           activeClassName="nav__link_active"
-          >
+        >
           Add resource
         </NavLink>
       </li>
