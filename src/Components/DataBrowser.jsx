@@ -1,12 +1,12 @@
 import React from 'react'
 
 const DataBrowser = ({
-  contents,
+  resources,
 }) => (
-  contents.resources ? (
+  resources ? (
     <ul>
       {
-        contents.resources.map(
+        resources.map(
           (resource) => (
             <li key={resource.uri}>{resource.uri}</li>
           ),

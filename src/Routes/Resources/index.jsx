@@ -42,7 +42,7 @@ const Resources = () => {
         path="/resources"
       >
         <Browse
-          contents={contents}
+          resources={contents.resources}
         />
         <Add
           addResource={(resource) => {

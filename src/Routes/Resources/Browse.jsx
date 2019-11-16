@@ -7,7 +7,7 @@ import {
 import DataBrowser from 'Components/DataBrowser'
 
 const Browse = ({
-  contents,
+  resources,
 }) => {
   const match = useRouteMatch()
   return (
@@ -16,7 +16,7 @@ const Browse = ({
       path={match.url}
     >
       <DataBrowser
-        contents={contents}
+        resources={resources}
       />
     </Route>
   )
