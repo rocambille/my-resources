@@ -1,5 +1,6 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { Route } from 'react-router-dom'
+import { useLocalStorage } from '@rehooks/local-storage'
 
 import useGitHubContents from 'Hooks/useGitHubContents'
 
@@ -9,33 +10,26 @@ import Browse from './Browse'
 import Add from './Add'
 
 const Resources = () => {
-  const either = (key) => (defaultValue) => (
-    window.localStorage.getItem(key) || defaultValue
-  )
-
-  const initialOwner = either('lastFetchedOwner')('')
-  const initialRepository = either('lastFetchedRepository')('my-resources')
-  const initialPath = either('lastFetchedPath')('db.json')
+  const [
+    owner,
+    setOwner,
+  ] = useLocalStorage('lastFetchedOwner')
+  const [
+    repository,
+  ] = useLocalStorage('lastFetchedRepository', 'my-resources')
+  const [
+    path,
+  ] = useLocalStorage('lastFetchedPath', 'db.json')
 
   const [
     contents,
     setContents,
-    owner,
-    setOwner,
-    /* repository */,
-    /* setRepository */,
-    /* path */,
-    /* setPath */,
     isFetching,
   ] = useGitHubContents(
-    initialOwner,
-    initialRepository,
-    initialPath,
+    owner,
+    repository,
+    path,
   )
-
-  useEffect(() => (
-    window.localStorage.setItem('lastFetchedOwner', owner)
-  ))
 
   return (
     <>

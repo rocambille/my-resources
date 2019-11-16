@@ -1,14 +1,11 @@
 import { useState, useEffect } from 'react'
 
 const useGitHubContents = (
-  initialOwner,
-  initialRepository,
-  initialPath,
+  owner,
+  repository,
+  path,
 ) => {
   const [contents, setContents] = useState({})
-  const [owner, setOwner] = useState(initialOwner)
-  const [repository, setRepository] = useState(initialRepository)
-  const [path, setPath] = useState(initialPath)
   const [isFetching, setFetching] = useState(false)
 
   useEffect(
@@ -20,6 +17,8 @@ const useGitHubContents = (
         const target = `https://api.github.com/repos/${owner}/${repository}/contents/${path}`
 
         const response = await fetch(target)
+
+        setFetching(false)
 
         if (response.status !== 200) {
           return
@@ -44,8 +43,6 @@ const useGitHubContents = (
           sha: json.sha,
           url: json.url,
         })
-
-        setFetching(false)
       }
 
       fetchContents()
@@ -60,12 +57,6 @@ const useGitHubContents = (
   return [
     contents,
     setContents,
-    owner,
-    setOwner,
-    repository,
-    setRepository,
-    path,
-    setPath,
     isFetching,
   ]
 }
