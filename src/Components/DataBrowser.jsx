@@ -3,15 +3,19 @@ import React from 'react'
 const DataBrowser = ({
   contents,
 }) => (
-  <ul>
-    {
-      contents.resources && contents.resources.map(
-        (resource) => (
-          <li key={resource.uri}>{resource.uri}</li>
-        ),
-      )
-    }
-  </ul>
+  contents.resources ? (
+    <ul>
+      {
+        contents.resources.map(
+          (resource) => (
+            <li key={resource.uri}>{resource.uri}</li>
+          ),
+        )
+      }
+    </ul>
+  ) : (
+    <p>Nothing to show</p>
+  )
 )
 
 export default DataBrowser
