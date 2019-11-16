@@ -1,58 +1,56 @@
-import React, { useReducer } from 'react'
-import { UID } from 'react-uid'
+/* eslint-disable react/jsx-props-no-spreading */
+/* eslint-disable jsx-a11y/label-has-associated-control */
+import React from 'react'
+import { useFormState } from 'react-use-form-state'
 
 const DataSourceForm = ({
   owner,
   setOwner,
   isFetching,
 }) => {
-  const reducer = (state, action) => {
-    window.clearTimeout(state.timeoutId)
-
-    const newOwner = action.value
-
-    return {
-      value: newOwner,
-      timeoutId: window.setTimeout(
-        () => setOwner(newOwner),
-        2000,
-      ),
-    }
-  }
-
-  const [username, setUsername] = useReducer(
-    reducer, {
-      value: owner,
-      timeoutId: 0,
+  const [
+    formState,
+    {
+      label,
+      text,
     },
-  )
+  ] = useFormState({
+    owner,
+    timeoutId: 0,
+  }, {
+    withIds: true,
+  })
 
   return (
-    <UID>
-      {
-        (id) => (
-          <div
-            className="_space-size_s"
-            style={{ textAlign: 'center' }}
-          >
-            <label
-              htmlFor={id}
-              className="_space_inline"
-            >
-              {isFetching ? 'fetching' : 'fetched'}
-            </label>
-            <input
-              id={id}
-              onChange={(event) => setUsername({ value: event.target.value })}
-              placeholder="jdoe"
-              className="_space-size_xs _space_inset-stretch"
-              type="text"
-              value={username.value}
-            />
-          </div>
-        )
-      }
-    </UID>
+    <div
+      className="_space-size_s"
+      style={{ textAlign: 'center' }}
+    >
+      <label
+        {...label('owner')}
+        className="_space_inline"
+      >
+        {isFetching ? 'fetching' : 'fetched'}
+      </label>
+      <input
+        {...text({
+          name: 'owner',
+          onChange: () => {
+            window.clearTimeout(formState.values.timeoutId)
+
+            formState.setField(
+              'timeoutId',
+              window.setTimeout(
+                () => setOwner(formState.values.owner),
+                1500,
+              ),
+            )
+          },
+        })}
+        placeholder="jdoe"
+        className="_space-size_xs _space_inset-stretch"
+      />
+    </div>
   )
 }
 
