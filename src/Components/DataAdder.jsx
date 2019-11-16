@@ -3,7 +3,10 @@
 import React from 'react'
 import { useFormState } from 'react-use-form-state'
 
-const DataAdder = () => {
+const DataAdder = ({
+  contents,
+  setContents
+}) => {
   const [
     formState,
     {
@@ -13,24 +16,38 @@ const DataAdder = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault()
-    console.log(formState.values.uri)
+    setContents({
+      resources: [
+        ...contents.resources,
+        { uri: formState.values.uri },
+      ],
+    })
   }
 
   return (
     <form
-      className="_space-size_s"
       onSubmit={handleSubmit}
+      className="_space_inset"
     >
-      <label
-        {...url('uri')}
-        className="_space_inline"
+      <div
+        className="_space_stack"
       >
-        URI
-      </label>
-      <input
-        {...url('uri')}
-        className="_space-size_xs _space_inset-stretch"
-      />
+        <label
+          {...url('uri')}
+          className="_space_inline"
+        >
+          URI
+        </label>
+        <input
+          {...url('uri')}
+          className="_space-size_xs _space_inset-stretch"
+        />
+      </div>
+      <button
+        type="submit"
+      >
+        Add
+      </button>
     </form>
   )
 }

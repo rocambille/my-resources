@@ -1,6 +1,7 @@
 import React from 'react'
 import {
   Route,
+  useHistory,
   useRouteMatch,
 } from 'react-router-dom'
 
@@ -10,6 +11,7 @@ const Add = ({
   contents,
   setContents,
 }) => {
+  const history = useHistory()
   const match = useRouteMatch()
   return (
     <Route
@@ -18,7 +20,10 @@ const Add = ({
     >
       <DataAdder
         contents={contents}
-        setContents={setContents}
+        setContents={(...args) => {
+          history.push('/resources')
+          setContents(...args)
+        }}
       />
     </Route>
   )
