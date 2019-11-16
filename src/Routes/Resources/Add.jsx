@@ -8,8 +8,7 @@ import {
 import DataAdder from 'Components/DataAdder'
 
 const Add = ({
-  contents,
-  setContents,
+  addResource,
 }) => {
   const history = useHistory()
   const match = useRouteMatch()
@@ -19,10 +18,9 @@ const Add = ({
       path={`${match.url}/add`}
     >
       <DataAdder
-        contents={contents}
-        setContents={(...args) => {
+        addResource={(...args) => {
           history.push('/resources')
-          setContents(...args)
+          addResource(...args)
         }}
       />
     </Route>

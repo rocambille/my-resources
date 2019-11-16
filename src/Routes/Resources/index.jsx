@@ -45,8 +45,15 @@ const Resources = () => {
           contents={contents}
         />
         <Add
-          contents={contents}
-          setContents={setContents}
+          addResource={(resource) => {
+            setContents({
+              ...contents,
+              resources: [
+                ...contents.resources,
+                resource,
+              ],
+            })
+          }}
         />
       </Route>
     </>

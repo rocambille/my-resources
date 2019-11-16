@@ -4,8 +4,7 @@ import React from 'react'
 import { useFormState } from 'react-use-form-state'
 
 const DataAdder = ({
-  contents,
-  setContents
+  addResource
 }) => {
   const [
     formState,
@@ -16,12 +15,7 @@ const DataAdder = ({
 
   const handleSubmit = (event) => {
     event.preventDefault()
-    setContents({
-      resources: [
-        ...contents.resources,
-        { uri: formState.values.uri },
-      ],
-    })
+    addResource({ uri: formState.values.uri })
   }
 
   return (
