@@ -29,6 +29,7 @@ const Resources = () => {
     owner,
     repository,
     path,
+    (data) => JSON.parse(data),
   )
 
   return (
@@ -42,7 +43,7 @@ const Resources = () => {
         path="/resources"
       >
         <Browse
-          resources={contents.resources}
+          resources={contents.data.resources}
         />
         <Add
           addResource={(resource) => {
