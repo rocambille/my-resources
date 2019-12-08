@@ -9,6 +9,10 @@ import DataSourceForm from 'Components/DataSourceForm'
 import Browse from './Browse'
 import Add from './Add'
 
+const initialContents = []
+
+const didPull = (data) => JSON.parse(data).resources
+
 const Resources = () => {
   const [
     owner,
@@ -25,11 +29,14 @@ const Resources = () => {
     contents,
     setContents,
     isFetching,
+    isAhead,
+    push,
   ] = useGitHubContents(
     owner,
     repository,
     path,
-    (data) => JSON.parse(data),
+    initialContents,
+    didPull,
   )
 
   return (
@@ -38,22 +45,21 @@ const Resources = () => {
         owner={owner}
         setOwner={setOwner}
         isFetching={isFetching}
+        isAhead={isAhead}
+        push={push}
       />
       <Route
         path="/resources"
       >
         <Browse
-          resources={contents.data.resources}
+          resources={contents}
         />
         <Add
           addResource={(resource) => {
-            setContents({
+            setContents([
               ...contents,
-              resources: [
-                ...contents.resources,
-                resource,
-              ],
-            })
+              resource,
+            ])
           }}
         />
       </Route>
