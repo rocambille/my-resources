@@ -4,7 +4,7 @@ import React from 'react'
 import { useFormState } from 'react-use-form-state'
 
 const DataAdder = ({
-  addResource
+  addResource,
 }) => {
   const [
     formState,
@@ -35,6 +35,7 @@ const DataAdder = ({
         <input
           {...url('uri')}
           className="_space-size_xs _space_inset-stretch"
+          required
         />
       </div>
       <button
