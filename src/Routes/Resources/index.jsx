@@ -1,5 +1,8 @@
 import React from 'react'
-import { Route } from 'react-router-dom'
+import {
+  Route,
+  useHistory,
+} from 'react-router-dom'
 import { useLocalStorage } from '@rehooks/local-storage'
 
 import useGitHubContents from 'Hooks/useGitHubContents'
@@ -39,6 +42,8 @@ const Resources = () => {
     didPull,
   )
 
+  const history = useHistory()
+
   return (
     <>
       <DataSourceForm
@@ -60,6 +65,7 @@ const Resources = () => {
               ...contents,
               resource,
             ])
+            history.push('/resources')
           }}
         />
       </Route>
