@@ -8,14 +8,14 @@ const useGitHubContents = (
   repository,
   path,
   initialContents = '',
-  didPull = (data) => data,
-  willPush = (data) => data,
+  afterPull = (data) => data,
+  beforePush = (data) => data,
 ) => {
   const [contents, setContents] = useState(initialContents)
   const [sha, setSha] = useState()
   const [url, setUrl] = useState()
   const [isFetching, setFetching] = useState(false)
-  const [isAhead, setAhead] = useState(false)
+  const [isUpToDate, setUpToDate] = useState(true)
 
   useEffect(() => {
     const pull = async () => {
@@ -44,10 +44,10 @@ const useGitHubContents = (
         ).join(''),
       )
 
-      setContents(didPull(pulledContents))
+      setContents(afterPull(pulledContents))
       setSha(json.sha)
       setUrl(json.url)
-      setAhead(false)
+      setUpToDate(true)
     }
 
     pull()
@@ -56,16 +56,16 @@ const useGitHubContents = (
     repository,
     path,
     initialContents,
-    didPull,
+    afterPull,
   ])
 
-  useEffect(() => { setAhead(true) }, [
+  useEffect(() => { setUpToDate(false) }, [
     contents,
   ])
 
   const push = async () => {
-    if (isAhead) {
-      const contentsToPush = willPush(contents)
+    if (!isUpToDate) {
+      const contentsToPush = beforePush(contents)
 
       setFetching(true)
 
@@ -73,16 +73,20 @@ const useGitHubContents = (
 
       setFetching(false)
 
-      setAhead(false)
+      setUpToDate(true)
     }
+  }
+
+  const git = {
+    isFetching,
+    isUpToDate,
+    push,
   }
 
   return [
     contents,
     setContents,
-    isFetching,
-    isAhead,
-    push,
+    git,
   ]
 }
 

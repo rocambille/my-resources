@@ -11,3 +11,13 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+label {
+  display: inline-block;
+  min-width: 5rem;
+  text-align: right;
+}
+
+button {
+  min-width: 4rem;
+}

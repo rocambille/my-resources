@@ -1,10 +1,10 @@
 import React from 'react'
 
 const PushButton = ({
-  isAhead,
+  disabled,
   push,
 }) => (
-  <button type="button" onClick={push} disabled={!isAhead}>Push</button>
+  <button type="button" onClick={push} disabled={disabled}>Push</button>
 )
 
 export default PushButton

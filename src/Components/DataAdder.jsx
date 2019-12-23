@@ -4,7 +4,7 @@ import React from 'react'
 import { useFormState } from 'react-use-form-state'
 
 const DataAdder = ({
-  addResource,
+  add,
 }) => {
   const [
     formState,
@@ -15,17 +15,15 @@ const DataAdder = ({
 
   const handleSubmit = (event) => {
     event.preventDefault()
-    addResource({ uri: formState.values.uri })
+    add({ uri: formState.values.uri })
   }
 
   return (
     <form
       onSubmit={handleSubmit}
-      className="_space_inset"
+      className="_space-size_s _space_inset _flex_row _flex_main-center _flex_cross-stretch"
     >
-      <div
-        className="_space_stack"
-      >
+      <div className="_space_inline">
         <label
           {...url('uri')}
           className="_space_inline"

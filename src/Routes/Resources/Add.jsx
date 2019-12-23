@@ -16,7 +16,7 @@ const Add = ({
       path={`${match.url}/add`}
     >
       <DataAdder
-        addResource={addResource}
+        add={addResource}
       />
     </Route>
   )

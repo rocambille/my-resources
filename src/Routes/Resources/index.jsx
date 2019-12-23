@@ -8,13 +8,14 @@ import { useLocalStorage } from '@rehooks/local-storage'
 import useGitHubContents from 'Hooks/useGitHubContents'
 
 import DataSourceForm from 'Components/DataSourceForm'
+import PushButton from 'Components/PushButton'
 
 import Browse from './Browse'
 import Add from './Add'
 
 const initialContents = []
 
-const didPull = (data) => JSON.parse(data).resources
+const afterPull = (data) => JSON.parse(data).resources
 
 const Resources = () => {
   const [
@@ -31,28 +32,31 @@ const Resources = () => {
   const [
     contents,
     setContents,
-    isFetching,
-    isAhead,
-    push,
+    git,
   ] = useGitHubContents(
     owner,
     repository,
     path,
     initialContents,
-    didPull,
+    afterPull,
   )
 
   const history = useHistory()
 
   return (
     <>
-      <DataSourceForm
-        owner={owner}
-        setOwner={setOwner}
-        isFetching={isFetching}
-        isAhead={isAhead}
-        push={push}
-      />
+      <div className="_flex_row _flex_main-center _flex_cross-stretch">
+        <DataSourceForm
+          owner={owner}
+          setOwner={setOwner}
+          isFetching={git.isFetching}
+          className="_space_inline"
+        />
+        <PushButton
+          disabled={git.isUpToDate}
+          push={git.push}
+        />
+      </div>
       <Route
         path="/resources"
       >
