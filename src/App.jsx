@@ -5,6 +5,7 @@ import Navbar from './Components/Navbar'
 
 import Routes from './Routes'
 
+import './Styles/layout.css'
 import './Styles/space.css'
 
 const App = () => (
