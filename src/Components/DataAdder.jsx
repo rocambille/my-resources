@@ -21,23 +21,24 @@ const DataAdder = ({
   return (
     <form
       onSubmit={handleSubmit}
-      className="_space-size_s _space_inset _flex_row _flex_main-center _flex_cross-stretch"
+      className="space-size:s space:inset flex:row flex-main:center flex-cross:stretch"
     >
-      <div className="_space_inline">
+      <div className="space:inline">
         <label
           {...url('uri')}
-          className="_space_inline"
+          className="space:inline"
         >
           URI
         </label>
         <input
           {...url('uri')}
-          className="_space-size_xs _space_inset-stretch"
+          className="space:inset-stretch"
           required
         />
       </div>
       <button
         type="submit"
+        className="space:inset-squish"
       >
         Add
       </button>

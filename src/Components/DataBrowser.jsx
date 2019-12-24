@@ -5,13 +5,13 @@ const DataBrowser = ({
 }) => (
   resources ? (
     <ul>
-      {
+      {React.Children.toArray(
         resources.map(
           (resource) => (
-            <li key={resource.uri}>{resource.uri}</li>
+            <li>{resource.uri}</li>
           ),
-        )
-      }
+        ),
+      )}
     </ul>
   ) : (
     <p>Nothing to show</p>

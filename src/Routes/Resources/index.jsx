@@ -45,12 +45,12 @@ const Resources = () => {
 
   return (
     <>
-      <div className="_flex_row _flex_main-center _flex_cross-stretch">
+      <div className="space-size:s flex:row flex-main:center flex-cross:stretch">
         <DataSourceForm
           owner={owner}
           setOwner={setOwner}
           isFetching={git.isFetching}
-          className="_space_inline"
+          className="space:inline"
         />
         <PushButton
           disabled={git.isUpToDate}

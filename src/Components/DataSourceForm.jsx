@@ -24,12 +24,11 @@ const DataSourceForm = ({
 
   return (
     <div
-      className={`_space-size_s${className && ` ${className}`}`}
-      style={{ textAlign: 'center' }}
+      className={className}
     >
       <label
         {...label('owner')}
-        className="_space_inline"
+        className="space:inline"
       >
         {isFetching ? 'fetching' : 'fetched'}
       </label>
@@ -49,7 +48,7 @@ const DataSourceForm = ({
           },
         })}
         placeholder="jdoe"
-        className="_space-size_xs _space_inset-stretch"
+        className="space:inset-stretch"
       />
     </div>
   )

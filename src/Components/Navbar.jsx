@@ -5,12 +5,12 @@ import '../Styles/navbar.css'
 
 const Navbar = () => (
   <nav>
-    <ul className="nav__list _space_inset _space_stack">
+    <ul className="nav__list space:inset space:stack">
       <li>
         <NavLink
           exact
           to="/resources/"
-          className="nav__link _space_inset-squish _space_inline"
+          className="nav__link space:inset-squish space:inline"
           activeClassName="nav__link_active"
         >
           Home
@@ -20,7 +20,7 @@ const Navbar = () => (
         <NavLink
           exact
           to="/resources/add"
-          className="nav__link _space_inset-squish"
+          className="nav__link space:inset-squish"
           activeClassName="nav__link_active"
         >
           Add resource

@@ -1,26 +1,26 @@
-._flex_column {
+.flex\:column {
   display: flex;
   flex-direction: column;
 }
 
-._flex_row {
+.flex\:row {
   display: flex;
   flex-direction: row;
 }
 
-._flex_cross-center {
+.flex-cross\:center {
   align-items: center;
 }
 
-._flex_cross-stretch {
+.flex-cross\:stretch {
   align-items: stretch;
 }
 
-._flex_full-center {
+.flex-both\:center {
   justify-content: center;
   align-items: center;
 }
 
-._flex_main-center {
+.flex-main\:center {
   justify-content: center;
 }
