@@ -3,7 +3,7 @@
 import React from 'react'
 import { useFormState } from 'react-use-form-state'
 
-const DataAdder = ({
+const ResourceAdder = ({
   add,
 }) => {
   const [
@@ -46,4 +46,4 @@ const DataAdder = ({
   )
 }
 
-export default DataAdder
+export default ResourceAdder

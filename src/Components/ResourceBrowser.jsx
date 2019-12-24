@@ -1,6 +1,6 @@
 import React from 'react'
 
-const DataBrowser = ({
+const ResourceBrowser = ({
   resources,
 }) => (
   resources ? (
@@ -18,4 +18,4 @@ const DataBrowser = ({
   )
 )
 
-export default DataBrowser
+export default ResourceBrowser
