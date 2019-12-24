@@ -5,7 +5,7 @@ import '../Styles/navbar.css'
 
 const Navbar = () => (
   <nav>
-    <ul className="nav__list space:inset space:stack">
+    <ul className="nav__list space:inset space:stack flex:row flex-both:center">
       <li>
         <NavLink
           exact
@@ -23,7 +23,7 @@ const Navbar = () => (
           className="nav__link space:inset-squish"
           activeClassName="nav__link_active"
         >
-          Add resource
+          Add
         </NavLink>
       </li>
     </ul>

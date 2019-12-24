@@ -24,3 +24,7 @@
 .flex-main\:center {
   justify-content: center;
 }
+
+.flex-self\:stretch {
+  align-self: stretch;
+}

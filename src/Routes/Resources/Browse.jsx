@@ -9,11 +9,11 @@ import DataBrowser from 'Components/DataBrowser'
 const Browse = ({
   resources,
 }) => {
-  const match = useRouteMatch()
+  const { path } = useRouteMatch()
   return (
     <Route
       exact
-      path={match.url}
+      path={path}
     >
       <DataBrowser
         resources={resources}

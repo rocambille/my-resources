@@ -21,7 +21,7 @@ const DataAdder = ({
   return (
     <form
       onSubmit={handleSubmit}
-      className="space-size:s space:inset flex:row flex-main:center flex-cross:stretch"
+      className="space-size:s space:inset flex:row flex-both:center"
     >
       <div className="space:inline">
         <label
@@ -38,7 +38,7 @@ const DataAdder = ({
       </div>
       <button
         type="submit"
-        className="space:inset-squish"
+        className="space:inset-squish flex-self:stretch"
       >
         Add
       </button>

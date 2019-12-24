@@ -9,11 +9,11 @@ import DataAdder from 'Components/DataAdder'
 const Add = ({
   addResource,
 }) => {
-  const match = useRouteMatch()
+  const { path } = useRouteMatch()
   return (
     <Route
       exact
-      path={`${match.url}/add`}
+      path={`${path}/add`}
     >
       <DataAdder
         add={addResource}

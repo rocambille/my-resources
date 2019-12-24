@@ -1,8 +1,5 @@
 .nav__list {
-  display: flex;
-  justify-content: center;
   background: #672f2f;
-  text-align: center;
 }
 
 .nav__link {

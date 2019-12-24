@@ -6,8 +6,7 @@ import { useFormState } from 'react-use-form-state'
 const DataSourceForm = ({
   owner,
   setOwner,
-  isFetching,
-  className,
+  git,
 }) => {
   const [
     formState,
@@ -23,14 +22,12 @@ const DataSourceForm = ({
   })
 
   return (
-    <div
-      className={className}
-    >
+    <div className="space-size:s flex:row flex-both:center">
       <label
         {...label('owner')}
         className="space:inline"
       >
-        {isFetching ? 'fetching' : 'fetched'}
+        {git.isFetching ? 'fetching' : 'fetched'}
       </label>
       <input
         {...text({
@@ -48,8 +45,16 @@ const DataSourceForm = ({
           },
         })}
         placeholder="jdoe"
-        className="space:inset-stretch"
+        className="space:inset-stretch space:inline"
       />
+      <button
+        type="button"
+        onClick={git.push}
+        disabled={git.isUpToDate}
+        className="space:inset-squish flex-self:stretch"
+      >
+        Push
+      </button>
     </div>
   )
 }
