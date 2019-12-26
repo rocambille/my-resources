@@ -65,15 +65,37 @@ const useGitHubContents = (
 
   const push = async () => {
     if (!isUpToDate) {
-      const contentsToPush = beforePush(contents)
+      const readyContents = beforePush(contents)
+
+      // thx https://stackoverflow.com/questions/30106476/using-javascripts-atob-to-decode-base64-doesnt-properly-decode-utf-8-strings
+      const encodedContents = btoa(
+        encodeURIComponent(readyContents).replace(
+          /%([0-9A-F]{2})/g,
+          (match, p1) => String.fromCharCode(`0x${p1}`),
+        ),
+      )
 
       setFetching(true)
 
-      console.log(`time for pushing: ${contentsToPush} with ${sha} at ${url}`)
+      fetch(target, {
+        method: 'put',
+        headers: {
+          ...authHeader(token),
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          message: `updated ${path}`,
+          content: encodedContents,
+          sha,
+          branch: 'test',
+        }),
+      }).then((response) => {
+        if (response.status === 200) {
+          setUpToDate(true)
+        }
 
-      setFetching(false)
-
-      setUpToDate(true)
+        setFetching(false)
+      })
     }
   }
 
