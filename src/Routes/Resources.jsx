@@ -4,7 +4,7 @@ import {
   useHistory,
   useRouteMatch,
 } from 'react-router-dom'
-import { useLocalStorage } from '@rehooks/local-storage'
+import useLocalStorage from 'react-use-localstorage'
 
 import useGitHubContents from 'Hooks/useGitHubContents'
 
