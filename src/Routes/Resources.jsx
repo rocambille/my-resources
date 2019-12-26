@@ -99,6 +99,7 @@ const Resources = () => {
     owner,
     repository,
     path,
+    token,
     initialContents,
     afterPull,
   )

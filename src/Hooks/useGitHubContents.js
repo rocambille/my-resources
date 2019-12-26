@@ -3,28 +3,30 @@ import {
   useState,
 } from 'react'
 
+const authHeader = (token) => (token ? { Authorization: `Bearer ${token}` } : {})
+
 const useGitHubContents = (
   owner,
   repository,
   path,
+  token,
   initialContents = '',
   afterPull = (data) => data,
   beforePush = (data) => data,
 ) => {
   const [contents, setContents] = useState(initialContents)
   const [sha, setSha] = useState()
-  const [url, setUrl] = useState()
   const [isFetching, setFetching] = useState(false)
   const [isUpToDate, setUpToDate] = useState(true)
+
+  const target = `https://api.github.com/repos/${owner}/${repository}/contents/${path}`
 
   useEffect(() => {
     const pull = async () => {
       setFetching(true)
       setContents(initialContents)
 
-      const target = `https://api.github.com/repos/${owner}/${repository}/contents/${path}`
-
-      const response = await fetch(target)
+      const response = await fetch(target, { headers: authHeader(token) })
 
       setFetching(false)
 
@@ -46,15 +48,13 @@ const useGitHubContents = (
 
       setContents(afterPull(pulledContents))
       setSha(json.sha)
-      setUrl(json.url)
       setUpToDate(true)
     }
 
     pull()
   }, [
-    owner,
-    repository,
-    path,
+    target,
+    token,
     initialContents,
     afterPull,
   ])
