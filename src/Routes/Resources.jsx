@@ -86,6 +86,10 @@ const Resources = () => {
   const [
     path,
   ] = useLocalStorage('lastFetchedPath', 'db.json')
+  const [
+    token,
+    setToken,
+  ] = useLocalStorage('token')
 
   const [
     contents,
@@ -106,6 +110,8 @@ const Resources = () => {
       <DataSource
         owner={owner}
         setOwner={setOwner}
+        token={token}
+        setToken={setToken}
         git={git}
       />
       <Route

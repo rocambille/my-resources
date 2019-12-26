@@ -1,11 +1,13 @@
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useFormState } from 'react-use-form-state'
 
 const DataSourceForm = ({
   owner,
   setOwner,
+  token,
+  setToken,
   git,
 }) => {
   const [
@@ -16,10 +18,23 @@ const DataSourceForm = ({
     },
   ] = useFormState({
     owner,
-    timeoutId: 0,
+    token,
   }, {
     withIds: true,
   })
+
+  useEffect(() => {
+    const timeoutId = window.setTimeout(() => {
+      setOwner(formState.values.owner)
+      setToken(formState.values.token)
+    }, 1500)
+
+    return () => window.clearTimeout(timeoutId)
+  }, [
+    formState.values,
+    setOwner,
+    setToken,
+  ])
 
   return (
     <div className="space-size:s flex:row flex-both:center">
@@ -30,21 +45,19 @@ const DataSourceForm = ({
         {git.isFetching ? 'fetching' : 'fetched'}
       </label>
       <input
-        {...text({
-          name: 'owner',
-          onChange: () => {
-            window.clearTimeout(formState.values.timeoutId)
-
-            formState.setField(
-              'timeoutId',
-              window.setTimeout(
-                () => setOwner(formState.values.owner),
-                1500,
-              ),
-            )
-          },
-        })}
+        {...text('owner')}
         placeholder="jdoe"
+        className="space:inset-stretch space:inline"
+      />
+      <label
+        {...label('token')}
+        className="space:inline"
+      >
+        personal access token
+      </label>
+      <input
+        {...text('token')}
+        placeholder="0a1b23c45d67e8f9"
         className="space:inset-stretch space:inline"
       />
       <button
