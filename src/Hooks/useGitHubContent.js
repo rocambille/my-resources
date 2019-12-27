@@ -5,16 +5,16 @@ import {
 
 const authHeader = (token) => (token ? { Authorization: `Bearer ${token}` } : {})
 
-const useGitHubContents = (
+const useGitHubContent = (
   owner,
   repository,
   path,
   token,
-  initialContents = '',
+  initialContent = '',
   afterPull = (data) => data,
   beforePush = (data) => data,
 ) => {
-  const [contents, setContents] = useState(initialContents)
+  const [content, setContent] = useState(initialContent)
   const [sha, setSha] = useState()
   const [isFetching, setFetching] = useState(false)
   const [isUpToDate, setUpToDate] = useState(true)
@@ -24,7 +24,7 @@ const useGitHubContents = (
   useEffect(() => {
     const pull = async () => {
       setFetching(true)
-      setContents(initialContents)
+      setContent(initialContent)
 
       const response = await fetch(target, { headers: authHeader(token) })
 
@@ -40,13 +40,15 @@ const useGitHubContents = (
       const json = await response.json()
 
       // thx https://stackoverflow.com/questions/30106476/using-javascripts-atob-to-decode-base64-doesnt-properly-decode-utf-8-strings
-      const pulledContents = decodeURIComponent(
+      const decodedContent = decodeURIComponent(
         atob(json.content).split('').map(
           (c) => `%${(`00${c.charCodeAt(0).toString(16)}`).slice(-2)}`,
         ).join(''),
       )
 
-      setContents(afterPull(pulledContents))
+      const readyContent = afterPull(decodedContent)
+
+      setContent(readyContent)
       setSha(json.sha)
       setUpToDate(true)
     }
@@ -55,21 +57,19 @@ const useGitHubContents = (
   }, [
     target,
     token,
-    initialContents,
+    initialContent,
     afterPull,
   ])
 
-  useEffect(() => { setUpToDate(false) }, [
-    contents,
-  ])
+  useEffect(() => { setUpToDate(false) }, [content])
 
   const push = async () => {
     if (!isUpToDate) {
-      const readyContents = beforePush(contents)
+      const readyContent = beforePush(content)
 
       // thx https://stackoverflow.com/questions/30106476/using-javascripts-atob-to-decode-base64-doesnt-properly-decode-utf-8-strings
-      const encodedContents = btoa(
-        encodeURIComponent(readyContents).replace(
+      const encodedContent = btoa(
+        encodeURIComponent(readyContent).replace(
           /%([0-9A-F]{2})/g,
           (match, p1) => String.fromCharCode(`0x${p1}`),
         ),
@@ -85,7 +85,7 @@ const useGitHubContents = (
         },
         body: JSON.stringify({
           message: `updated ${path}`,
-          content: encodedContents,
+          content: encodedContent,
           sha,
           branch: 'test',
         }),
@@ -106,10 +106,10 @@ const useGitHubContents = (
   }
 
   return [
-    contents,
-    setContents,
+    content,
+    setContent,
     git,
   ]
 }
 
-export default useGitHubContents
+export default useGitHubContent

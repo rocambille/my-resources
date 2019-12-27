@@ -6,11 +6,11 @@ import {
 } from 'react-router-dom'
 import useLocalStorage from 'react-use-localstorage'
 
-import useGitHubContents from 'Hooks/useGitHubContents'
+import useGitHubContent from '../Hooks/useGitHubContent'
 
-import DataSource from 'Components/DataSource'
-import ResourceAdder from 'Components/ResourceAdder'
-import ResourceBrowser from 'Components/ResourceBrowser'
+import DataSource from '../Components/DataSource'
+import ResourceAdder from '../Components/ResourceAdder'
+import ResourceBrowser from '../Components/ResourceBrowser'
 
 /*
 ██████╗ ██████╗  ██████╗ ██╗    ██╗███████╗███████╗
@@ -71,9 +71,10 @@ const Add = ({
 ╚═╝  ╚═╝ ╚═════╝  ╚═════╝    ╚═╝
 */
 
-const initialContents = []
+const initialContent = []
 
 const afterPull = (data) => JSON.parse(data).resources
+const beforePush = (data) => JSON.stringify({ resources: data }, null, 1)
 
 const Resources = () => {
   const [
@@ -92,16 +93,17 @@ const Resources = () => {
   ] = useLocalStorage('token')
 
   const [
-    contents,
-    setContents,
+    content,
+    setContent,
     git,
-  ] = useGitHubContents(
+  ] = useGitHubContent(
     owner,
     repository,
     path,
     token,
-    initialContents,
+    initialContent,
     afterPull,
+    beforePush,
   )
 
   const history = useHistory()
@@ -119,12 +121,12 @@ const Resources = () => {
         path="/resources"
       >
         <Browse
-          resources={contents}
+          resources={content}
         />
         <Add
           addResource={(resource) => {
-            setContents([
-              ...contents,
+            setContent([
+              ...content,
               resource,
             ])
             history.push('/resources')
